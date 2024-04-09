@@ -1,18 +1,19 @@
 package company;
 
-public class Employee {
+//抽象クラスに変更
+public abstract class Employee implements Workable {
     //フィールド
     protected final String name;
-    private final Department department;
+    protected final Department department;
     private final String position;
-    private final int enployeeId;
+    private final int employeeId;
     
     //コンストラクター
-    public Employee(String name, Department department, String position, int enployeeId) {
+    public Employee(String name, Department department, String position, int employeeId) {
         this.name = name;
         this.department = department;
         this.position = position;
-        this.enployeeId = enployeeId;
+        this.employeeId = employeeId;
     }
     
     //報告メソッド
@@ -26,10 +27,14 @@ public class Employee {
         report(1);
     }
     
+    //抽象メソッドに変更
     //会議に参加するメソッド
-    public void joinMeeting() {
-        department.meeting();
-        System.out.println("→上記の会議に出席します。部署:" + department.getName() + "名前:" + name);
+    public abstract void joinMeeting();
+    
+    //働くメソッドを実装
+    @Override
+    public void work() {
+        System.out.println("正社員として働きます。名前:" + name + slogan);
     }
 
 }
